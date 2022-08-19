@@ -19,8 +19,25 @@
       <span id="current-time-text">Time<span>
     </div>
     <div><h2>Set Alarm</h2></div>
-    <div><h2>Alarms Set</h2>
-    <div id="alarm-list-container"></div>
+    <div>
+      <h2>Alarms Set</h2>
+      <div id="container--alarm-list">
+        <ul id="ul--alarm-list">
+          
+        </ul>
+        <template id="temp--li--alarm">
+            <li class="li-alarm" data-uuid='dummyUUID'>
+                <div class="div-li">
+                  <div class="time">time</div>
+                  <div class="description">description</div>
+                  <div class="uuid">uuid</div>
+                  <div class="delete eh-delete">DELETE ME!</div>
+                  <div class="edit eh-edit">EDIT ME!</div>
+                </div>
+            </li>
+          </template>
+      </div>
+    </div>
     <div><h2>Graph View</h2></div>
   </body>
 </html>

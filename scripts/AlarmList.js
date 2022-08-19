@@ -1,28 +1,41 @@
 import Alarm from "./Alarm.js";
 
 export default class AlarmList {
-  constructor() {
-    this.alarmList = [];
-  }
+    constructor() {
+        console.log("Constructor ran");
+        this.alarmList = new Array();
+    }
 
-  addAlarm(alarmToAdd) {
-    if (!Alarm.valid(alarmToAdd)) return false;
-    alarmList.push(alarmToAdd);
-    return true;
-  }
+    addAlarm(alarmToAdd) {
+        if (!Alarm.valid(alarmToAdd)) return false;
+        this.alarmList.push(alarmToAdd);
+        console.log(this.alarmList);
+        return true;
+    }
 
-  removeAlarm(alarmToRemove) {
-    alarmList = alarmList.filter((a) => alarmToRemove != a);
-  }
+    // deleteAlarm(alarmToRemove) {
+    //     this.alarmList = this.alarmList.filter((a) => alarmToRemove != a);
+    // }
 
-  editAlarm(alarmToEdit, newAlarmTime) {
-    if (!Alarm.valid(alarmToEdit)) return false;
+    editAlarm(uuid) {
+        console.log("EDIT ARRAYLIST", uuid);
+        console.log(this.alarmList);
+    }
 
-    const alarmIndexFound = this.alarmList.findIndex(alarmToEdit);
-    if (alarmIndexFound == -1) return false;
+    deleteAlarm(uuid) {
+        console.log("DELETE ARRAYLIST", uuid);
+        this.alarmList = this.alarmList.filter((a) => a.uuid != uuid);
+        console.log(this.alarmList);
+    }
 
-    alarmList[alarmIndexFound].setAlarmTime(newAlarmTime);
+    // editAlarm(alarmToEdit, newAlarmTime) {
+    //     if (!Alarm.valid(alarmToEdit)) return false;
 
-    return true;
-  }
+    //     const alarmIndexFound = this.alarmList.findIndex(alarmToEdit);
+    //     if (alarmIndexFound == -1) return false;
+
+    //     this.alarmList[alarmIndexFound].setAlarmTime(newAlarmTime);
+
+    //     return true;
+    // }
 }
