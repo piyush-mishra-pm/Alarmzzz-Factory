@@ -16,15 +16,11 @@ View.generateViewAlarmList(alarmsPresent.alarmList);
 document.getElementById("ul--alarm-list").addEventListener("click", (e) => {
     if (e.target.matches(".eh-delete")) {
         const uuidToDelete = e.target.closest(".li-alarm").dataset.uuid;
-        console.log("DELETE Confirm\t" + uuidToDelete);
         ModalHandlers.showConfirmDeleteModal(uuidToDelete, alarmsPresent);
-        console.log("Post Delete, ALL ALARMS :", alarmsPresent);
         View.generateViewAlarmList(alarmsPresent.alarmList);
     } else if (e.target.matches(".eh-edit")) {
         const uuidToEdit = e.target.closest(".li-alarm").dataset.uuid;
-        console.log("EDIT\t" + uuidToEdit);
-        alarmsPresent.editAlarm(uuidToEdit);
-        console.log("Post Edit, ALL ALARMS", alarmsPresent);
+        ModalHandlers.showEditModal(uuidToEdit, alarmsPresent);
         View.generateViewAlarmList(alarmsPresent.alarmList);
     }
 });

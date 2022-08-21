@@ -50,18 +50,24 @@
     <!-- Edit / Confirm-Delete Alarm modal-->
     <div id="modal-window" data-uuid='dummyUUID'>
       <div id="modal-window-edit--container">
-        <div id="modal-window-edit--close-btn">&times;</div>
         <div id="modal--alarm-edit">
           <p id="modal--alarm-edit--window-message"></p>
-          <p>Name: <span id="modal--alarm-edit--name"></span></p>
-          <p>Alarm-Time: <span id="modal--alarm-edit--name"></span></p>
-          <p>UUID: <span id="modal--alarm-edit--name"></span></p>
+          <label for="modal--alarm-edit--name">Alarm Name</label>
+          <input type="text" id="modal--alarm-edit--name" name="name"></br>
+          <label for="modal--alarm-edit--time">Alarm Time</label>
+          <input type="datetime-local" id="modal--alarm-edit--time"
+       name="time" value="2022-08-20T19:30"
+       min="2022-08-20T19:30" max="2023-08-20T21:00" step="1">
+          <p id="modal--alarm-edit--error-message"></p>
+          <p>UUID: <span id="modal--alarm-edit--uuid"></span></p> <!--UUID is only for debug here-->
+          <button id="btn-modal-edit--yes">OK</button>
+          <button id="btn-modal-edit--cancel">Cancel</button>
         </div>
       </div>
       <div id="modal-window-confirm--container">
         <div id="modal-window-confirm--message">Confirm modal message goes here!</div>
-        <div id="modal-window-confirm--yes">OK</div>
-        <div id="modal-window-confirm--cancel">Cancel</div>
+        <button id="modal-window-confirm--yes">OK</div>
+        <button id="modal-window-confirm--cancel">Cancel</div>
       </div>
     </div>
   </body>

@@ -9,13 +9,9 @@
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
 }
-#modal-window-dialog--container {
-    background-color: thistle;
-    width: 50%;
-    height: 40%;
-}
 #modal-window-confirm--container {
     display: none;
+    z-index: 10;
     background-color: turquoise;
     width: 30%;
     height: 20%;
@@ -28,5 +24,18 @@
 }
 
 #modal-window-edit--container {
+    background-color: yellowgreen;
     display: none;
+    z-index: 5;
+    padding: 1em;
+    width: auto;
+    height: auto;
+}
+
+#modal--alarm-edit--error-message {
+    color: green;
+}
+
+#modal--alarm-edit--error-message.invalid-alarmTime {
+    color: rgb(204, 0, 0);
 }

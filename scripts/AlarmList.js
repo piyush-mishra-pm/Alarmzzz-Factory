@@ -13,22 +13,17 @@ export default class AlarmList {
         return true;
     }
 
-    editAlarm(uuid, newAlarm) {
-        console.log("EDIT ARRAYLIST", uuid);
+    editAlarm(alarmUpdatesObject) {
+        const alarmObjectToEdit = this.getAlarm(alarmUpdatesObject.uuid);
+        alarmObjectToEdit.name = alarmUpdatesObject.name;
+        alarmObjectToEdit.alarmTime = alarmUpdatesObject.alarmTime;
     }
 
     deleteAlarm(uuid) {
         this.alarmList = this.alarmList.filter((a) => a.uuid != uuid);
     }
 
-    // editAlarm(alarmToEdit, newAlarmTime) {
-    //     if (!Alarm.valid(alarmToEdit)) return false;
-
-    //     const alarmIndexFound = this.alarmList.findIndex(alarmToEdit);
-    //     if (alarmIndexFound == -1) return false;
-
-    //     this.alarmList[alarmIndexFound].setAlarmTime(newAlarmTime);
-
-    //     return true;
-    // }
+    getAlarm(uuid) {
+        return this.alarmList.find((alarm) => alarm.uuid == uuid);
+    }
 }
