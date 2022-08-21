@@ -1,0 +1,32 @@
+#modal-window {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+#modal-window-dialog--container {
+    background-color: thistle;
+    width: 50%;
+    height: 40%;
+}
+#modal-window-confirm--container {
+    display: none;
+    background-color: turquoise;
+    width: 30%;
+    height: 20%;
+}
+#modal-window--close-btn:hover {
+    color: grey;
+}
+#modal-window--close-btn:hover {
+    color: red;
+}
+
+#modal-window-edit--container {
+    display: none;
+}

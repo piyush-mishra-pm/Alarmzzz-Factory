@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- CSS imports -->
         <link href="styles/shared.css" rel="stylesheet" />
+        <link href="styles/modals.css" rel="stylesheet" />
 
         <!-- JS imports -->
         <script src="scripts/currentTime.js" defer></script>
@@ -14,11 +15,14 @@
   </head>
   <body>
     <h1>Alarm Clocks</h1>
+    <!-- ##### Current time Section ##### -->
     <div>
       <h2>Current Time</h2>
       <span id="current-time-text">Time<span>
     </div>
     <div><h2>Set Alarm</h2></div>
+
+    <!-- ##### ALARMS List Section ##### -->
     <div>
       <h2>Alarms Set</h2>
       <div id="container--alarm-list">
@@ -38,6 +42,27 @@
           </template>
       </div>
     </div>
+
+    <!-- ##### Graph View SECTION ##### -->
     <div><h2>Graph View</h2></div>
+
+    <!-- ##### MODALS SECTION ##### -->
+    <!-- Edit / Confirm-Delete Alarm modal-->
+    <div id="modal-window" data-uuid='dummyUUID'>
+      <div id="modal-window-edit--container">
+        <div id="modal-window-edit--close-btn">&times;</div>
+        <div id="modal--alarm-edit">
+          <p id="modal--alarm-edit--window-message"></p>
+          <p>Name: <span id="modal--alarm-edit--name"></span></p>
+          <p>Alarm-Time: <span id="modal--alarm-edit--name"></span></p>
+          <p>UUID: <span id="modal--alarm-edit--name"></span></p>
+        </div>
+      </div>
+      <div id="modal-window-confirm--container">
+        <div id="modal-window-confirm--message">Confirm modal message goes here!</div>
+        <div id="modal-window-confirm--yes">OK</div>
+        <div id="modal-window-confirm--cancel">Cancel</div>
+      </div>
+    </div>
   </body>
 </html>

@@ -13,19 +13,12 @@ export default class AlarmList {
         return true;
     }
 
-    // deleteAlarm(alarmToRemove) {
-    //     this.alarmList = this.alarmList.filter((a) => alarmToRemove != a);
-    // }
-
-    editAlarm(uuid) {
+    editAlarm(uuid, newAlarm) {
         console.log("EDIT ARRAYLIST", uuid);
-        console.log(this.alarmList);
     }
 
     deleteAlarm(uuid) {
-        console.log("DELETE ARRAYLIST", uuid);
         this.alarmList = this.alarmList.filter((a) => a.uuid != uuid);
-        console.log(this.alarmList);
     }
 
     // editAlarm(alarmToEdit, newAlarmTime) {
