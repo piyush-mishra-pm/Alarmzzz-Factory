@@ -20,7 +20,20 @@
       <h2>Current Time</h2>
       <span id="current-time-text">Time<span>
     </div>
-    <div><h2>Set Alarm</h2></div>
+    
+    <!-- ##### Create New Alarm ##### -->
+    <div>
+      <h2>Set Alarm</h2>
+      <label for="input--create-alarm--name">Alarm Name</label>
+        <input type="text" id="input--create-alarm--name">
+        <label for="input--create-alarm--time">Set Alarm Time</label>
+        <input type="datetime-local" id="input--create-alarm--time"
+        name="time" step="1">
+        <button id="btn--create-alarm">
+          Create Alarm
+        </button>
+        <p id="create-alarm--error-message">Error Message</p>
+    </div>
 
     <!-- ##### ALARMS List Section ##### -->
     <div>
@@ -56,8 +69,7 @@
           <input type="text" id="modal--alarm-edit--name" name="name"></br>
           <label for="modal--alarm-edit--time">Alarm Time</label>
           <input type="datetime-local" id="modal--alarm-edit--time"
-       name="time" value="2022-08-20T19:30"
-       min="2022-08-20T19:30" max="2023-08-20T21:00" step="1">
+       name="time" step="1">
           <p id="modal--alarm-edit--error-message"></p>
           <p>UUID: <span id="modal--alarm-edit--uuid"></span></p> <!--UUID is only for debug here-->
           <button id="btn-modal-edit--yes">OK</button>

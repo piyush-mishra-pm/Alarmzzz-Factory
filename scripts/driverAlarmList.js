@@ -2,6 +2,7 @@ import Alarm from "./Alarm.js";
 import AlarmList from "./AlarmList.js";
 import * as View from "./Views.js";
 import * as ModalHandlers from "./ModalHandlers.js";
+import * as CreateAlarm from "./CreateAlarm.js";
 
 const anAlarm = new Alarm(new Date(), "Alarm 1");
 const anAlarm1 = new Alarm(new Date(Date.now() + 150000000), "Alarm 2");
@@ -24,3 +25,5 @@ document.getElementById("ul--alarm-list").addEventListener("click", (e) => {
         View.generateViewAlarmList(alarmsPresent.alarmList);
     }
 });
+
+CreateAlarm.init(alarmsPresent);
