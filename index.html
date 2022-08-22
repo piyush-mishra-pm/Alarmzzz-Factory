@@ -9,7 +9,6 @@
         <link href="styles/modals.css" rel="stylesheet" />
 
         <!-- JS imports -->
-        <script src="scripts/currentTime.js" defer></script>
         <script type="module" src="scripts/driverAlarmList.js" defer></script>
     <title>Alarm Clocks</title>
   </head>
@@ -60,7 +59,7 @@
     <div><h2>Graph View</h2></div>
 
     <!-- ##### MODALS SECTION ##### -->
-    <!-- Edit / Confirm-Delete Alarm modal-->
+    <!-- Edit Alarm modal-->
     <div id="modal-window" data-uuid='dummyUUID'>
       <div id="modal-window-edit--container">
         <div id="modal--alarm-edit">
@@ -76,10 +75,16 @@
           <button id="btn-modal-edit--cancel">Cancel</button>
         </div>
       </div>
+      <!-- Confirm Delete Alarm modal-->
       <div id="modal-window-confirm--container">
         <div id="modal-window-confirm--message">Confirm modal message goes here!</div>
         <button id="modal-window-confirm--yes">OK</div>
         <button id="modal-window-confirm--cancel">Cancel</div>
+      </div>
+      <!-- Alarm Arrived modal-->
+      <div id="modal-window-alarm-arrived--container">
+        <div id="modal-window-alarm-arrived--message">Confirm modal message goes here!</div>
+        <button id="modal-window-alarm-arrived--close-larm">Close Alarm</div>
       </div>
     </div>
   </body>

@@ -137,4 +137,8 @@ function onEditAlarmInputDateTimeChange() {
     }
 }
 
-export { showConfirmDeleteModal, showEditModal };
+/*******
+ * Alarm-Arrived-Related:
+ *******/
+function alarmArrivedShow(alarmsArrived) {}
+export { showConfirmDeleteModal, showEditModal, alarmArrivedShow };

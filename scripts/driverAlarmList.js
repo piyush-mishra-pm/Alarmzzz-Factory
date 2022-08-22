@@ -3,10 +3,11 @@ import AlarmList from "./AlarmList.js";
 import * as View from "./Views.js";
 import * as ModalHandlers from "./ModalHandlers.js";
 import * as CreateAlarm from "./CreateAlarm.js";
+import * as ChronHandler from "./ChronHandler.js";
 
-const anAlarm = new Alarm(new Date(), "Alarm 1");
-const anAlarm1 = new Alarm(new Date(Date.now() + 150000000), "Alarm 2");
-const anAlarm2 = new Alarm(new Date(Date.now() + 1500000000), "Alarm 3");
+const anAlarm = new Alarm(new Date() + 5000, "Alarm 1");
+const anAlarm1 = new Alarm(new Date(Date.now() + 10000), "Alarm 2");
+const anAlarm2 = new Alarm(new Date(Date.now() + 15000), "Alarm 3");
 const alarmsPresent = new AlarmList();
 
 alarmsPresent.addAlarm(anAlarm);
@@ -27,3 +28,4 @@ document.getElementById("ul--alarm-list").addEventListener("click", (e) => {
 });
 
 CreateAlarm.init(alarmsPresent);
+ChronHandler.init(alarmsPresent);

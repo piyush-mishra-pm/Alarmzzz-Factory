@@ -26,4 +26,11 @@ export default class AlarmList {
     getAlarm(uuid) {
         return this.alarmList.find((alarm) => alarm.uuid == uuid);
     }
+
+    getAlarmsCompleted() {
+        const dateTimeNow = Date.now();
+        return this.alarmList.filter(
+            (alarm) => Date.parse(alarm.alarmTime) <= dateTimeNow
+        );
+    }
 }
