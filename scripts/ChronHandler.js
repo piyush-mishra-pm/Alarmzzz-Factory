@@ -1,49 +1,61 @@
 import * as Views from "./Views.js";
-import * as ModalHandlers from "./ModalHandlers";
+import * as Utils from "./Utils.js";
 
-function init(alarmsPresentList) {
-    alarmsPresent = alarmsPresentList;
+let alarmsPresent;
+
+function init(alarmsListObject) {
+    alarmsPresent = alarmsListObject;
 }
 
+// Update Current Time (being displayed) every sec.
+setTimeout(() => {
+    // Update Current Time in display:
+    setInterval(setCurrentTime, 1000);
+    // Check Status of alarm clocks every 2 sec:
+    setInterval(checkAndUpdateAlarmClocksStatus, 2000);
+}, 2000);
+
 export { init };
+
 /*
- * CURRENT TIME Updates:
+ * Current Time Updates:
  */
 
 const currentTimeDisplay = document.getElementById("current-time-text");
 
 function setCurrentTime() {
     const currentTime = new Date();
-    const formattedTime = timeFormatter(currentTime);
+    const formattedTime = Utils.timeFormatter(currentTime);
     currentTimeDisplay.innerText = formattedTime;
 }
 
-function timeFormatter(timeGiven) {
-    return (
-        String(timeGiven.getHours()).padStart(2, "0") +
-        ":" +
-        String(timeGiven.getMinutes()).padStart(2, "0") +
-        ":" +
-        String(timeGiven.getSeconds()).padStart(2, "0")
-    );
+/*
+ * Periodically update alarm finished status:
+ */
+function checkAndUpdateAlarmClocksStatus() {
+    const recentInfo = ifAlarmsRecentlyFinished();
+    if (recentInfo.isAlarmRecentlyFinished) {
+        window.alert(
+            `Alarm Finished!\n
+${recentInfo.alarmsNewlyFinished.map(
+    (al) => `-> ${al.name} ${al.alarmTime}\n`
+)}`
+        );
+        Views.generateViews(alarmsPresent);
+    }
 }
 
-// Update Current Time (being displayed) every sec.
-setInterval(setCurrentTime, 1000);
-
-/*
- * Alarm clock list Updates:
- */
-
-// Check Status of alarm clocks every 2 sec.
-setInterval(checkAndUpdateAlarmClocksStatus, 2000);
-let alarmsPresent;
-function checkAndUpdateAlarmClocksStatus() {
-    const alarmsCompleted = alarmsPresent.getAlarmsCompleted();
-    if (!alarmsCompleted.length) return;
-    console.log("Removal Time: ", new Date());
-    console.log(alarmsCompleted);
-    alarmsCompleted.forEach((al) => alarmsPresent.deleteAlarm(al.uuid));
-    Views.generateViewAlarmList(alarmsPresent.alarmList);
-    ModalHandlers.alarmArrivedShow(alarmsCompleted);
+const seenFinishedAlarm = new Set();
+function ifAlarmsRecentlyFinished() {
+    let isAlarmRecentlyFinished = false;
+    const alarmsNewlyFinished = [];
+    const finishedAlarmsSoFar = alarmsPresent.getAlarmsFinished();
+    for (const finishedAlarm of finishedAlarmsSoFar) {
+        if (!seenFinishedAlarm.has(finishedAlarm)) {
+            seenFinishedAlarm.add(finishedAlarm);
+            alarmsNewlyFinished.push(finishedAlarm);
+            isAlarmRecentlyFinished = true;
+        }
+    }
+    return { isAlarmRecentlyFinished, alarmsNewlyFinished };
 }

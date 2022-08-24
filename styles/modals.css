@@ -39,3 +39,7 @@
 .invalid-alarmTime {
     color: rgb(204, 0, 0);
 }
+
+.hide {
+    display: none;
+}

@@ -55,9 +55,6 @@
       </div>
     </div>
 
-    <!-- ##### Graph View SECTION ##### -->
-    <div><h2>Graph View</h2></div>
-
     <!-- ##### MODALS SECTION ##### -->
     <!-- Edit Alarm modal-->
     <div id="modal-window" data-uuid='dummyUUID'>
@@ -83,8 +80,26 @@
       </div>
       <!-- Alarm Arrived modal-->
       <div id="modal-window-alarm-arrived--container">
-        <div id="modal-window-alarm-arrived--message">Confirm modal message goes here!</div>
-        <button id="modal-window-alarm-arrived--close-larm">Close Alarm</div>
+        <h2>Alarms Arrived!</h2>
+        <div id="modal-window-alarm-arrived--message"></div>
+        <ul id="ul--modal-window-alarm-arrived">
+          
+        </ul>
+          <template id="template--alarm-arrived--li">
+            <li class="li--alarm-arrived" data-uuid='dummyUUID'>
+                <div class="div--alarm-arrived">
+                  <p class="toggle-active-text"></p>
+                  <div class="time--alarm-arrived">time</div>
+                  <div class="description--alarm-arrived">description</div>
+                  <div class="uuid--alarm-arrived">uuid</div>
+                  <button class="delete eh--arrived-delete">DELETE</button>
+                  <button class="edit eh--arrived-edit">EDIT</button>
+                  <button class="reactivate-alarm">Re-Activate</button>
+                  <button class="disable-alarm">DISABLE</button>
+                </div>
+            </li>
+          </template>
+        <button id="modal-window-alarm-arrived--close-alarm">Close Window</div>
       </div>
     </div>
   </body>

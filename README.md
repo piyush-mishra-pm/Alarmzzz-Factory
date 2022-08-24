@@ -24,3 +24,13 @@ Users can use this to create and manage a list of alarms.
 -   Local Persistence.
 -   Show ads for revenue.
 -   Host.
+
+alarmtime-arrived 1
+persistence 2
+Refactor:
+
+-   singleton,
+-   observer,
+
+    color alarm,
+    styling,

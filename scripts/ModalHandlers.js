@@ -1,6 +1,21 @@
-import * as View from "./Views.js";
+import * as Views from "./Views.js";
+
+let alarmsMain;
+function init(alarmsCollection) {
+    alarmsMain = alarmsCollection;
+}
 
 const modalWindow = document.getElementById("modal-window");
+
+document.getElementById("ul--alarm-list").addEventListener("click", (e) => {
+    const uuidToOperate = e.target.closest(".li-alarm").dataset.uuid;
+    if (e.target.matches(".eh-delete")) {
+        showConfirmDeleteModal(uuidToOperate);
+    } else if (e.target.matches(".eh-edit")) {
+        showEditModal(uuidToOperate);
+    }
+    Views.generateViews(alarmsMain);
+});
 
 /*******
  * DELETE-Related:
@@ -17,8 +32,8 @@ const btnConfirmDeleteCancel = document.getElementById(
 );
 btnConfirmDeleteCancel.addEventListener("click", hideConfirmDeleteModal);
 
-function showConfirmDeleteModal(uuidToDelete, alarmList) {
-    setupConfirmDeleteModal(uuidToDelete, alarmList);
+function showConfirmDeleteModal(uuidToDelete) {
+    setupConfirmDeleteModal(uuidToDelete);
     modalWindow.style.display = "block";
     modalConfirmDeleteBox.style.display = "block";
 }
@@ -29,13 +44,13 @@ function hideConfirmDeleteModal() {
     modalWindow.style.display = "none";
 }
 
-function setupConfirmDeleteModal(uuidToDelete, alarmsPresent) {
+function setupConfirmDeleteModal(uuidToDelete) {
     deleteAbortController = new AbortController();
     btnConfirmDeleteOK.addEventListener(
         "click",
         () => {
-            alarmsPresent.deleteAlarm(uuidToDelete);
-            View.generateViewAlarmList(alarmsPresent.alarmList);
+            alarmsMain.deleteAlarm(uuidToDelete);
+            Views.generateViews(alarmsMain);
             hideConfirmDeleteModal();
         },
         { once: true, signal: deleteAbortController.signal }
@@ -53,8 +68,8 @@ let editAbortController;
 
 btnCancelEditModal.addEventListener("click", hideEditModal);
 
-function showEditModal(uuidToEdit, alarmsPresent) {
-    setupEditModal(uuidToEdit, alarmsPresent);
+function showEditModal(uuidToEdit) {
+    setupEditModal(uuidToEdit);
     modalWindow.style.display = "block";
     modalEditAlarm.style.display = "block";
 }
@@ -65,11 +80,8 @@ function hideEditModal() {
     modalWindow.style.display = "none";
 }
 
-function setupEditModal(uuidToEdit, alarmsPresent) {
-    // Get the alarm details stored:
-    console.log(uuidToEdit);
-    const alarmPresentAlready = alarmsPresent.getAlarm(uuidToEdit);
-    console.log(alarmPresentAlready);
+function setupEditModal(uuidToEdit) {
+    const alarmPresentAlready = alarmsMain.getAlarm(uuidToEdit);
     // Set up the field values as per the alarm:
     document.getElementById("modal--alarm-edit--name").value =
         alarmPresentAlready.name;
@@ -80,7 +92,7 @@ function setupEditModal(uuidToEdit, alarmsPresent) {
             alarmPresentAlready.alarmTime.getTimezoneOffset()
     );
     const timeStr = earlierAlarmTime.toISOString().slice(0, 19);
-    console.log(timeStr);
+
     document.getElementById("modal--alarm-edit--time").value = timeStr;
     document.getElementById("modal--alarm-edit--uuid").innerText =
         alarmPresentAlready.uuid;
@@ -90,16 +102,16 @@ function setupEditModal(uuidToEdit, alarmsPresent) {
     btnOKEditModal.addEventListener(
         "click",
         () => {
-            onBtnOKEditModalPressedCallback(uuidToEdit, alarmsPresent);
+            onBtnOKEditModalPressedCallback(uuidToEdit);
         },
         { once: true, signal: editAbortController.signal }
     );
 }
 
-function onBtnOKEditModalPressedCallback(uuidToEdit, alarmsPresent) {
+function onBtnOKEditModalPressedCallback(uuidToEdit) {
     const alarmUpdateObject = getFormValues(uuidToEdit);
-    alarmsPresent.editAlarm(alarmUpdateObject);
-    View.generateViewAlarmList(alarmsPresent.alarmList);
+    alarmsMain.editAlarm(alarmUpdateObject);
+    Views.generateViews(alarmsMain);
     hideEditModal();
 }
 
@@ -140,5 +152,23 @@ function onEditAlarmInputDateTimeChange() {
 /*******
  * Alarm-Arrived-Related:
  *******/
-function alarmArrivedShow(alarmsArrived) {}
-export { showConfirmDeleteModal, showEditModal, alarmArrivedShow };
+const modalAlarmsArrived = document.getElementById(
+    "modal-window-alarm-arrived--container"
+);
+modalAlarmsArrived.addEventListener("click", handleAlarmArrivedBtnEvents);
+
+function handleAlarmArrivedBtnEvents(e) {
+    const uuidToDelete = e.target.closest(".li--alarm-arrived").dataset.uuid;
+    if (e.target.matches(".eh--arrived-delete")) {
+        showConfirmDeleteModal(uuidToDelete);
+    } else if (e.target.matches(".eh--arrived-edit")) {
+        showEditModal(uuidToDelete);
+    } else if (e.target.matches(".reactivate-alarm")) {
+        console.log("Missing Action for Reactivate Alarm");
+    } else if (e.target.matches(".disable-alarm")) {
+        console.log("Missing Action for Disable Alarm");
+    }
+    Views.generateViews(alarmsMain);
+}
+
+export { init };

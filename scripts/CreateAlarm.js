@@ -42,7 +42,7 @@ function onCreateAlarmBtn() {
     const alarmName = inputAlarmName.value;
     const alarmToAdd = new Alarm(new Date(alarmTime), alarmName);
     presentAlarms.addAlarm(alarmToAdd);
-    Views.generateViewAlarmList(presentAlarms.alarmList);
+    Views.generateViews(presentAlarms);
 }
 
 export { init };

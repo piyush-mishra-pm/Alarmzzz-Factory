@@ -17,6 +17,7 @@ export default class AlarmList {
         const alarmObjectToEdit = this.getAlarm(alarmUpdatesObject.uuid);
         alarmObjectToEdit.name = alarmUpdatesObject.name;
         alarmObjectToEdit.alarmTime = alarmUpdatesObject.alarmTime;
+        this.updateAlarmsFinishedStatus();
     }
 
     deleteAlarm(uuid) {
@@ -27,10 +28,24 @@ export default class AlarmList {
         return this.alarmList.find((alarm) => alarm.uuid == uuid);
     }
 
-    getAlarmsCompleted() {
-        const dateTimeNow = Date.now();
+    getAlarmsFinished() {
+        return this.alarmList.filter((alarm) =>
+            alarm.getUpdatedFinishedStatus()
+        );
+    }
+
+    updateAlarmsFinishedStatus() {
+        this.getAlarmsFinished();
+    }
+
+    getAlarmsDisabled() {
+        return this.alarmList.filter((alarm) => alarm.getDisabledStatus());
+    }
+
+    // Returns alarms which are neither disabled nor finished yet.
+    getAlarmsActive() {
         return this.alarmList.filter(
-            (alarm) => Date.parse(alarm.alarmTime) <= dateTimeNow
+            (alarm) => !(alarm.disabled || alarm.finished)
         );
     }
 }
