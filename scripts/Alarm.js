@@ -32,6 +32,11 @@ export default class Alarm {
         return this.disabled;
     }
 
+    toggleDisabledStatus() {
+        this.disabled = !this.disabled;
+        return this.disabled;
+    }
+
     setDisabledStatusAlarm(isDisabled) {
         this.disabled = isDisabled;
         return this;

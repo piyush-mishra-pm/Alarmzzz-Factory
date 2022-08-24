@@ -1,7 +1,7 @@
 import Alarm from "./Alarm.js";
 import AlarmList from "./AlarmList.js";
 import * as View from "./Views.js";
-import * as ModalHandlers from "./ModalHandlers.js";
+import * as EventHandlers from "./EventHandlers.js";
 import * as CreateAlarm from "./CreateAlarm.js";
 import * as ChronHandler from "./ChronHandler.js";
 
@@ -22,7 +22,7 @@ alarmsPresent.addAlarm(anAlarm2);
 alarmsPresent.addAlarm(anAlarm2_);
 alarmsPresent.addAlarm(anAlarm3);
 
-ModalHandlers.init(alarmsPresent);
+EventHandlers.init(alarmsPresent);
 CreateAlarm.init(alarmsPresent);
 ChronHandler.init(alarmsPresent);
 

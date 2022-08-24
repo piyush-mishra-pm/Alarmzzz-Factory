@@ -15,92 +15,105 @@
   <body>
     <h1>Alarm Clocks</h1>
     <!-- ##### Current time Section ##### -->
-    <div>
+    <section id="section--current-time">
       <h2>Current Time</h2>
       <span id="current-time-text">Time<span>
-    </div>
+    </section>
     
-    <!-- ##### Create New Alarm ##### -->
-    <div>
+    <!-- ##### Create New Alarm ##### [Start]-->
+    <section id="section--alarms-create-new">
       <h2>Set Alarm</h2>
       <label for="input--create-alarm--name">Alarm Name</label>
-        <input type="text" id="input--create-alarm--name">
-        <label for="input--create-alarm--time">Set Alarm Time</label>
-        <input type="datetime-local" id="input--create-alarm--time"
-        name="time" step="1">
-        <button id="btn--create-alarm">
-          Create Alarm
-        </button>
-        <p id="create-alarm--error-message">Error Message</p>
-    </div>
+      <input type="text" id="input--create-alarm--name">
+      <label for="input--create-alarm--time">Set Alarm Time</label>
+      <input type="datetime-local" id="input--create-alarm--time"
+      name="time" step="1">
+      <button id="btn--create-alarm">
+        Create Alarm
+      </button>
+      <p id="create-alarm--error-message">Error Message</p>
+    </section>
+    <!-- ##### Create New Alarm ##### [End]-->
 
-    <!-- ##### ALARMS List Section ##### -->
-    <div>
+    <!-- ##### Alarm Active Section ##### [Start] -->
+    <section id="section--alarms-active" class="section-alarms">
       <h2>Alarms Set</h2>
       <div id="container--alarm-list">
-        <ul id="ul--alarm-list">
+        <ul id="ul--alarm-active" class="listener-edit listener-delete listener-disable">
           
         </ul>
-        <template id="temp--li--alarm">
-            <li class="li-alarm" data-uuid='dummyUUID'>
-                <div class="div-li">
-                  <div class="time">time</div>
-                  <div class="description">description</div>
-                  <div class="uuid">uuid</div>
-                  <div class="delete eh-delete">DELETE ME!</div>
-                  <div class="edit eh-edit">EDIT ME!</div>
-                </div>
-            </li>
-          </template>
       </div>
-    </div>
+    </section>
+    <!-- ##### Alarm Active Section ##### [End] -->
 
-    <!-- ##### MODALS SECTION ##### -->
-    <!-- Edit Alarm modal-->
+    <!-- Alarm Finished Section [Start]-->
+    <section id="section-alarms-finished" class="section-alarms">
+      <h2>Alarms Finished!</h2>
+      <div id="modal-window-alarm-finished--message"></div>
+      <ul id="ul---alarm-finished" class="listener-edit listener-delete listener-disable">
+        <!-- JS used to fill list using following template-->
+      </ul>
+    </section>
+    <!-- Alarm Finished Section [End]-->
+
+    <!-- Alarm Disabled Section [Start]-->
+    <section id="section-alarms-disabled" class="section-alarms">
+      <h2>Alarms Disabled!</h2>
+      <div id="alarms-disabled--message"></div>
+      <ul id="ul--alarm-disabled" class="listener-edit listener-delete listener-disable">
+        <!-- JS used to fill list using following template-->
+      </ul>
+    </section>
+    <!-- Alarm Disabled Section [End]-->
+
+    <!-- Common template for alarms. Alarms in disabled, Active and Finished section, all use this.-->
+    <template id="template--li--alarm">
+      <li class="li--alarm" data-uuid='dummyUUID'>
+          <div>
+            <div class="time--alarm">time</div>
+            <div class="description--alarm">description</div>
+            <div class="uuid--alarm">uuid</div>
+            <button class="btn--delete-alarm">DELETE</button>
+            <button class="btn--edit-alarm">EDIT</button>
+            Disable Alarm: <input type="checkbox"  class="btn-toggle-disable">
+          </div>
+      </li>
+    </template>
+
+    <!-- ##### MODALS SECTION ##### [Start]-->
     <div id="modal-window" data-uuid='dummyUUID'>
+
+      <!-- Edit Alarm modal [Start]-->
       <div id="modal-window-edit--container">
         <div id="modal--alarm-edit">
-          <p id="modal--alarm-edit--window-message"></p>
-          <label for="modal--alarm-edit--name">Alarm Name</label>
+          <p class="modal-message">How you wanna edit this alarm?</p>
+          
+          <label for="modal--alarm-edit--name" class="label-text">Alarm Name</label>
           <input type="text" id="modal--alarm-edit--name" name="name"></br>
-          <label for="modal--alarm-edit--time">Alarm Time</label>
+          
+          <label for="modal--alarm-edit--time" class="label-text">Alarm Time</label>
           <input type="datetime-local" id="modal--alarm-edit--time"
        name="time" step="1">
+          
           <p id="modal--alarm-edit--error-message"></p>
-          <p>UUID: <span id="modal--alarm-edit--uuid"></span></p> <!--UUID is only for debug here-->
+       
+          <p class="label-text">UUID: <span id="modal--alarm-edit--uuid"></span></p> <!--UUID is only for debug here-->
+          <input type="checkbox" id="modal--alarm-edit--disabled" class="activate"></button>
+
           <button id="btn-modal-edit--yes">OK</button>
           <button id="btn-modal-edit--cancel">Cancel</button>
         </div>
       </div>
-      <!-- Confirm Delete Alarm modal-->
-      <div id="modal-window-confirm--container">
-        <div id="modal-window-confirm--message">Confirm modal message goes here!</div>
-        <button id="modal-window-confirm--yes">OK</div>
-        <button id="modal-window-confirm--cancel">Cancel</div>
+      <!-- Edit Alarm modal [End]-->
+
+      <!-- Confirm Delete Alarm modal [Start]-->
+      <div id="modal-window-confirm-delete--container">
+        <div class="modal-message">Sure? Delete this alarm forevva?</div>
+        <button id="modal-window-confirm-delete--yes">OK</button>
+        <button id="modal-window-confirm-delete--cancel">Cancel</button>
       </div>
-      <!-- Alarm Arrived modal-->
-      <div id="modal-window-alarm-arrived--container">
-        <h2>Alarms Arrived!</h2>
-        <div id="modal-window-alarm-arrived--message"></div>
-        <ul id="ul--modal-window-alarm-arrived">
-          
-        </ul>
-          <template id="template--alarm-arrived--li">
-            <li class="li--alarm-arrived" data-uuid='dummyUUID'>
-                <div class="div--alarm-arrived">
-                  <p class="toggle-active-text"></p>
-                  <div class="time--alarm-arrived">time</div>
-                  <div class="description--alarm-arrived">description</div>
-                  <div class="uuid--alarm-arrived">uuid</div>
-                  <button class="delete eh--arrived-delete">DELETE</button>
-                  <button class="edit eh--arrived-edit">EDIT</button>
-                  <button class="reactivate-alarm">Re-Activate</button>
-                  <button class="disable-alarm">DISABLE</button>
-                </div>
-            </li>
-          </template>
-        <button id="modal-window-alarm-arrived--close-alarm">Close Window</div>
-      </div>
+      <!-- Confirm Delete Alarm modal [End]-->
     </div>
+    <!-- ##### MODALS SECTION ##### [End]-->
   </body>
 </html>
