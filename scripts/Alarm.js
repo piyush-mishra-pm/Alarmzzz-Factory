@@ -23,8 +23,9 @@ export default class Alarm {
     }
 
     static deepCopy(alarm) {
-        const clonedAlarm = new Alarm(alarm.alarmTime, alarm.name);
+        const clonedAlarm = new Alarm(alarm.alarmTime, alarm.name, alarm.disabled);
         clonedAlarm.uuid = alarm.uuid;
+        clonedAlarm.getUpdatedFinishedStatus();
         return clonedAlarm;
     }
 

@@ -1,4 +1,6 @@
 import * as Views from "./Views.js";
+import * as Utils from "./Utils.js";
+import * as PersistenceManager from "./PersistenceManager.js";
 
 let alarmsMain;
 function init(alarmsCollection) {
@@ -65,6 +67,7 @@ function setupConfirmDeleteModal(uuidToDelete) {
         () => {
             alarmsMain.deleteAlarm(uuidToDelete);
             Views.generateViews(alarmsMain);
+            PersistenceManager.SaveData(alarmsMain);
             hideConfirmDeleteModal();
         },
         { once: true, signal: deleteAbortController.signal }
@@ -106,12 +109,9 @@ function setupEditModal(uuidToEdit) {
     // name
     document.getElementById("modal--alarm-edit--name").value = alarmPresentAlready.name;
     // alarm time:
-    const earlierAlarmTime = new Date(alarmPresentAlready.alarmTime);
-    earlierAlarmTime.setMinutes(
-        alarmPresentAlready.alarmTime.getMinutes() - alarmPresentAlready.alarmTime.getTimezoneOffset()
+    document.getElementById("modal--alarm-edit--time").value = Utils.getISODateStringFromDate(
+        alarmPresentAlready.alarmTime
     );
-    const timeStr = earlierAlarmTime.toISOString().slice(0, 19);
-    document.getElementById("modal--alarm-edit--time").value = timeStr;
     // uuid:
     document.getElementById("modal--alarm-edit--uuid").innerText = alarmPresentAlready.uuid;
     // disabled status:
@@ -137,6 +137,7 @@ function onBtnOKEditModalPressedCallback(uuidToEdit) {
     if (!isEditAlarrmInputValid()) return;
     alarmsMain.editAlarm(alarmUpdateObject);
     Views.generateViews(alarmsMain);
+    PersistenceManager.SaveData(alarmsMain);
     hideEditModal();
 }
 
@@ -178,6 +179,7 @@ function toggleDisableAction(uuid) {
     alarmToToggle.toggleDisabledStatus();
     alarmsMain.updateAlarmsFinishedStatus();
     Views.generateViews(alarmsMain);
+    PersistenceManager.SaveData(alarmsMain);
 }
 
 export { init };

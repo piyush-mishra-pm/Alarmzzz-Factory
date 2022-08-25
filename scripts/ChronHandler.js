@@ -1,5 +1,6 @@
 import * as Views from "./Views.js";
 import * as Utils from "./Utils.js";
+import * as PersistenceManager from "./PersistenceManager.js";
 
 let alarmsPresent;
 
@@ -37,11 +38,10 @@ function checkAndUpdateAlarmClocksStatus() {
     if (recentInfo.isAlarmRecentlyFinished) {
         window.alert(
             `Alarm Finished!\n
-${recentInfo.alarmsNewlyFinished.map(
-    (al) => `-> ${al.name} ${al.alarmTime}\n`
-)}`
+${recentInfo.alarmsNewlyFinished.map((al) => `-> ${al.name} ${al.alarmTime}\n`)}`
         );
         Views.generateViews(alarmsPresent);
+        PersistenceManager.SaveData(alarmsPresent);
     }
 }
 

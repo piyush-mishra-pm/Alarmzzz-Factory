@@ -46,4 +46,11 @@ export default class AlarmList {
     getAlarmsActive() {
         return this.alarmList.filter((alarm) => !(alarm.disabled || alarm.finished));
     }
+
+    deepCopy(alarmListToCopy) {
+        this.alarmList = new Array();
+        alarmListToCopy.alarmList.forEach((alarm) => {
+            this.addAlarm(alarm);
+        });
+    }
 }

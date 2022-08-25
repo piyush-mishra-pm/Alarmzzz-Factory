@@ -9,7 +9,7 @@
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
 }
-#modal-window-confirm--container {
+#modal-window-confirm-delete--container {
     display: none;
     z-index: 10;
     background-color: turquoise;
