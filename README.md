@@ -25,12 +25,5 @@ Users can use this to create and manage a list of alarms.
 -   Show ads for revenue.
 -   Host.
 
-alarmtime-arrived 1
-persistence 2
-Refactor:
-
--   singleton,
--   observer,
-
     color alarm,
     styling,

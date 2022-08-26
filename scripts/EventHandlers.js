@@ -109,8 +109,9 @@ function setupEditModal(uuidToEdit) {
     // name
     document.getElementById("modal--alarm-edit--name").value = alarmPresentAlready.name;
     // alarm time:
-    document.getElementById("modal--alarm-edit--time").value = Utils.getISODateStringFromDate(
-        alarmPresentAlready.alarmTime
+    const earlierAlarmTime = new Date(alarmPresentAlready.alarmTime);
+    earlierAlarmTime.setMinutes(
+        alarmPresentAlready.alarmTime.getMinutes() - alarmPresentAlready.alarmTime.getTimezoneOffset()
     );
     // uuid:
     document.getElementById("modal--alarm-edit--uuid").innerText = alarmPresentAlready.uuid;

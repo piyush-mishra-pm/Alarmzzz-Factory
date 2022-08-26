@@ -17,6 +17,7 @@ const errorMsg = document.getElementById("create-alarm--error-message");
 
 function init(presentAlarmsList) {
     presentAlarms = presentAlarmsList;
+    resetInputFields();
 }
 
 let alarmTime;

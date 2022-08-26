@@ -18,6 +18,15 @@ export default class Alarm {
         return this.alarmTime;
     }
 
+    getRemainingTime() {
+        if (this.disabled) return;
+
+        this.getUpdatedFinishedStatus();
+        if (this.finished) return;
+
+        return this.alarmTime - new Date().getTime();
+    }
+
     static valid(alarmTime) {
         return true;
     }

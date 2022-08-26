@@ -8,13 +8,8 @@ function init(alarmsListObject) {
     alarmsPresent = alarmsListObject;
 }
 
-// Update Current Time (being displayed) every sec.
-setTimeout(() => {
-    // Update Current Time in display:
-    setInterval(setCurrentTime, 1000);
-    // Check Status of alarm clocks every 2 sec:
-    setInterval(checkAndUpdateAlarmClocksStatus, 2000);
-}, 2000);
+// Update Current Time in display:
+setInterval(chronUpdate, 1000);
 
 export { init };
 
@@ -24,10 +19,17 @@ export { init };
 
 const currentTimeDisplay = document.getElementById("current-time-text");
 
-function setCurrentTime() {
+function chronUpdate() {
+    // Update Current time Display:
     const currentTime = new Date();
     const formattedTime = Utils.timeFormatter(currentTime);
     currentTimeDisplay.innerText = formattedTime;
+
+    // Periodically update remaining times in all active alarms:
+    Views.updateRemainingTimes(alarmsPresent);
+
+    // Update status of all alarms: (Finishing of new alarms and alerts of newly finished alarms).
+    checkAndUpdateAlarmClocksStatus();
 }
 
 /*
