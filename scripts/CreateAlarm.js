@@ -55,6 +55,7 @@ function resetInputFields() {
     // Default alarm time is 1hr from now:
     inputCreateAlarmTime.value = Utils.getISODateStringFromDate(new Date(Date.now() + 3600000));
     inputCreateAlarmDisabled.checked = false;
+    isValidAlarmCreation();
 }
 
 export { init };

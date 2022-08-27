@@ -10,11 +10,12 @@
     background-color: rgba(0, 0, 0, 0.5);
 }
 #modal-window-confirm-delete--container {
-    display: none;
     z-index: 10;
-    background-color: turquoise;
-    width: 30%;
-    height: 20%;
+    background-color: var(--color-accent);
+    margin: 50vh auto;
+    width: max-content;
+    padding: 1rem;
+    height: max-content;
 }
 #modal-window--close-btn:hover {
     color: grey;
@@ -24,22 +25,27 @@
 }
 
 #modal-window-edit--container {
-    background-color: yellowgreen;
-    display: none;
+    background-color: var(--color-bg);
     z-index: 5;
-    padding: 1em;
-    width: auto;
-    height: auto;
+    margin: 40vh auto;
+    width: max-content;
+    padding: 1rem;
+    height: max-content;
 }
 
 #modal--alarm-edit--error-message {
     color: green;
 }
 
-.invalid-alarmTime {
+.invalid-alarmTime,
+#modal--alarm-edit--error-message.invalid-alarmTime {
     color: rgb(204, 0, 0);
 }
 
 .hide {
     display: none;
+}
+
+.modal-message {
+    color: var(--color-accent-light);
 }

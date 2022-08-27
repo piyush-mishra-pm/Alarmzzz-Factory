@@ -42,8 +42,8 @@ function getDuration(duration) {
     return durationString;
 }
 
-function getISODateStringFromDate(dateISOstring) {
-    const dateClone = new Date(dateISOstring);
+function getISODateStringFromDate(dateTime) {
+    const dateClone = new Date(dateTime);
     dateClone.setMinutes(dateClone.getMinutes() - dateClone.getTimezoneOffset());
     return dateClone.toISOString().slice(0, 19);
 }
