@@ -4,6 +4,7 @@
 html {
     --text-font-family: "DynaPuff", cursive;
     --numbers-font-family: "Silkscreen", cursive;
+    font-family: var(--text-font-family);
 }
 
 body {
@@ -13,7 +14,6 @@ body {
     font-size: 1rem;
     color: var(--color-neutral);
 
-    background-color: var(--color-bg);
     /* Color Variables */
     --color-bg: hsla(184, 95%, 17%, 1);
     --color-bg-light: hsla(180, 100%, 22%, 1);
@@ -21,9 +21,76 @@ body {
     --color-accent: hsla(21, 96%, 43%, 1);
     --color-neutral: hsla(10, 50%, 91%, 1);
     --color-dark: rgb(19, 19, 19);
+    --color-dark-lighter: rgba(85, 53, 16, 0.667);
     /* Global Resets*/
     margin: 0;
     padding: 0;
+
+    background-color: var(--color-neutral);
+
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1rem 1fr 1rem;
+    /* mobile view layout */
+    grid-template-areas:
+        "header     header          header"
+        "......     create-alarm    ......."
+        "......     active-alarms   ......."
+        "......     finished-alarms ......."
+        "......     disabled-alarms ......."
+        "footer     footer          footer";
+}
+
+@media (min-width: 950px) {
+    body {
+        grid-template-columns: 1rem 1fr 1fr 1rem;
+        grid-template-areas:
+            "header     header          header          header"
+            "......     create-alarm    create-alarm    ......."
+            "......     active-alarms   active-alarms   ......."
+            "......     finished-alarms disabled-alarms ......."
+            "footer     footer          footer          footer";
+    }
+}
+
+header {
+    background-color: var(--color-bg);
+    margin: 0px;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.25rem;
+    grid-area: header;
+}
+.gridarea--create-alarm {
+    grid-area: create-alarm;
+    padding: 1rem;
+    margin: 0.5rem;
+}
+.gridarea--create-alarm input {
+    margin-right: 2rem;
+}
+.gridarea--alarms-active {
+    grid-area: active-alarms;
+    padding: 1rem;
+    margin: 0.5rem;
+}
+.gridarea--alarms-finished {
+    grid-area: finished-alarms;
+    padding: 1rem;
+    margin: 0.5rem;
+}
+.gridarea--alarms-disabled {
+    grid-area: disabled-alarms;
+    padding: 1rem;
+    margin: 0.5rem;
+}
+footer {
+    grid-area: footer;
+    background-color: var(--color-bg);
+    margin: 0px;
+    height: 2rem;
 }
 
 /* Global Resets */
@@ -64,37 +131,34 @@ a:-webkit-any-link {
     color: inherit;
 }
 
-header {
-    background-color: var(--color-bg-light);
-    margin: 0px;
-    padding: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.25rem;
-}
 #logo {
     margin: 0;
     color: var(--color-accent);
     font-weight: bold;
     font-size: 2rem;
-    font-family: var(--text-font-family);
 }
 
 .text-time {
     font-family: var(--numbers-font-family);
+}
+.time--alarm--dmy {
+    font-family: var(--numbers-font-family);
+    font-size: 0.85rem;
 }
 .text-message {
     font-family: var(--numbers-font-family);
 }
 .text-heading {
     color: var(--color-accent-light);
-    font-family: var(--text-font-family);
+    /*font-family: var(--text-font-family);*/
     font-size: 1.25rem;
 }
 .text-btn {
     font-family: var(--text-font-family);
     font-size: 0.85rem;
+}
+.lbl-remainingTime {
+    font-size: 0.75rem;
 }
 .flex-vertical {
     display: flex;
@@ -106,6 +170,7 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .li--alarm {
@@ -115,17 +180,41 @@ header {
     border-radius: 0.5rem;
     overflow-wrap: break-word;
     color: var(--color-dark);
+    width: 200px;
 }
 .bg-color-radius-shadow {
-    background-color: var(--local-bgColor, var());
+    background-color: var(--local-bgColor, var(--color-bg-light));
     border-radius: var(--local-bgRadius, 0);
     box-shadow: 0px 0px var(--local-boxShadow-blur, 5px) var(--local-boxShadow-radius, 5px)
         var(--local-boxShadow-color, rgba(47, 47, 47, 0.259));
     margin: var(--local-margin, 5px);
     padding: var(--local-padding, 5px);
+    min-height: 5rem;
 }
 
 .hoverable:hover {
     cursor: var(--local-hoverCursor, pointer);
     background-color: var(--local-hoverBgColor, var(--color-accent));
+}
+.hidden {
+    display: none;
+}
+
+.time--div {
+    --local-bgColor: rgba(37, 85, 53, 0.295);
+    --local-boxShadow-blur: 0px;
+    --local-boxShadow-radius: 0px;
+    --local-bgRadius: 5px;
+}
+.div-remainingTime {
+    --local-bgColor: var(--color-dark-lighter);
+    --local-boxShadow-blur: 0px;
+    --local-boxShadow-radius: 0px;
+    --local-bgRadius: 5px;
+}
+
+.grid-view {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }

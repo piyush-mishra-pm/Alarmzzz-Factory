@@ -26,20 +26,30 @@
       <div id="logo">Alarmzzz!</div>
       <div>Manage your alarmzzz here</div>
     </header>
-    
-    <div class="flex-vertical">
-      <div class="bg-color-radius-shadow">
+    <div class="bg-color-radius-shadow gridarea--create-alarm">
         <!-- ##### Create New Alarm ##### [Start]-->
         <section id="section--alarms-create-new" class="flex-vertical">
+          
           <div class="text-heading">Create alarms</div>
+          
           <div class="flex-horizontal">
+            <div>
             <label for="input--create-alarm--name">Alarm Name</label>
-          <input type="text" id="input--create-alarm--name">
-          <label for="input--create-alarm--time">Set Alarm Time</label>
-          <input type="datetime-local" id="input--create-alarm--time"
-          name="time" step="1">
-          <input type="checkbox" id="input--create-alarm--disabled">
+            <input type="text" id="input--create-alarm--name">
           </div>
+          
+          <div>
+            <label for="input--create-alarm--time">Set Alarm Time</label>
+            <input type="datetime-local" id="input--create-alarm--time"
+            name="time" step="1">
+          </div>
+          
+          <div>
+            <label for="input--create-alarm--disabled">Is Disabled</label><input type="checkbox" id="input--create-alarm--disabled">
+          </div>
+
+          </div>
+          
           <div>
             <p id="create-alarm--error-message">Error Message</p>
             <button id="btn--create-alarm" class="text-btn hoverable">
@@ -48,12 +58,12 @@
           </div>
         </section>
         <!-- ##### Create New Alarm ##### [End]-->
-      </div>
+    </div>
 
-      <div class="flex-horizontal bg-color-radius-shadow">
+    <div class="gridarea--alarms-active">
         <!-- ##### Alarm Active Section ##### [Start] -->
-        <section id="section--alarms-active" class="section-alarms flex-vertical bg-color-radius-shadow">
-          <div class="text-heading">Alarms Set</div>
+        <section id="section--alarms-active" class="section-alarms bg-color-radius-shadow">
+          <div class="text-heading">Active Alarms</div>
           <div id="container--alarm-list">
             <ul id="ul--alarm-active" class="listener-edit listener-delete listener-disable grid-view">
               
@@ -61,9 +71,11 @@
           </div>
         </section>
         <!-- ##### Alarm Active Section ##### [End] -->
+    </div>
 
         <!-- Alarm Finished Section [Start]-->
-        <section id="section-alarms-finished" class="section-alarms flex-vertical bg-color-radius-shadow">
+    <div class="gridarea--alarms-finished">
+        <section id="section-alarms-finished" class="section-alarms bg-color-radius-shadow">
           <div class="text-heading">Alarms Finished!</div>
           <div>
             <ul id="ul---alarm-finished" class="listener-edit listener-delete listener-disable grid-view">
@@ -71,28 +83,38 @@
           </ul>
           </div>
         </section>
+    </div>
         <!-- Alarm Finished Section [End]-->
 
         <!-- Alarm Disabled Section [Start]-->
-        <section id="section-alarms-disabled" class="section-alarms flex-vertical bg-color-radius-shadow">
+    <div class="gridarea--alarms-disabled">
+        <section id="section-alarms-disabled" class="section-alarms bg-color-radius-shadow">
           <div class="text-heading">Alarms Disabled!</div>
           <div id="alarms-disabled--message"></div>
           <ul id="ul--alarm-disabled" class="listener-edit listener-delete listener-disable grid-view">
             <!-- JS used to fill list using following template-->
           </ul>
         </section>
-        <!-- Alarm Disabled Section [End]-->
-        
-      </div>
     </div>
+        <!-- Alarm Disabled Section [End]-->
 
     <!-- Common template for alarms. Alarms in disabled, Active and Finished section, all use this.-->
     <template id="template--li--alarm">
       <li class="li--alarm" data-uuid='dummyUUID'>
           <div>
-            <div class="time--alarm text-time">time</div>
             <div class="description--alarm">description</div>
-            <div class="uuid--alarm">uuid</div>
+            <div class="time--div bg-color-radius-shadow">
+              <div class="time--alarm text-time">12:00:00</div>
+              <div class="time--alarm--dmy text-time">31/13/2023</div>
+            </div>
+            <div class="div-remainingTime bg-color-radius-shadow">
+              <label class="lbl-remainingTime">
+                Remaining time:</br>
+                <span class="txt-remainingTime time--alarm--dmy">
+                </span> 
+              </label>
+            </div>
+            <div class="uuid--alarm hidden">uuid</div>
             <button class="btn--delete-alarm text-btn hoverable">Delete</button>
             <button class="btn--edit-alarm text-btn hoverable">Edit</button>
             <label class="text-btn hoverable"><input type="checkbox"  class="btn-toggle-disable">Disable</label>
@@ -136,4 +158,6 @@
     </div>
     <!-- ##### MODALS SECTION ##### [End]-->
   </body>
+  <footer>
+  </footer>
 </html>

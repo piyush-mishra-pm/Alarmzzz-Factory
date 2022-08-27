@@ -10,7 +10,7 @@ function SaveData(alarmsList) {
 
 function LoadData() {
     const saved = JSON.parse(window.localStorage.getItem(SAVE_KEY));
-
+    console.log(saved);
     // JSON.parse doesnot capture the functions in our AlarmList class objects.
     // JSON.parse can only restore data.
     // So need to deserialise saved data to create AlarmList object with functions.
@@ -20,6 +20,7 @@ function LoadData() {
 function deserialiseJSON(jsonSaved) {
     const alarmList = new AlarmList();
     jsonSaved.alarmList.forEach((alarm) => {
+        alarm.alarmTime = new Date(alarm.alarmTime);
         const clonedAlarm = Alarm.deepCopy(alarm);
         alarmList.addAlarm(clonedAlarm);
     });

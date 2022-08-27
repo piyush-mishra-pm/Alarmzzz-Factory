@@ -24,7 +24,7 @@ export default class Alarm {
         this.getUpdatedFinishedStatus();
         if (this.finished) return;
 
-        return this.alarmTime - new Date().getTime();
+        return new Date(this.alarmTime).getTime() - new Date().getTime();
     }
 
     static valid(alarmTime) {
