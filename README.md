@@ -1,29 +1,35 @@
-# Alarm Clock
+# Alarmz Factory:
 
-Coding Ninja's Frontend project assignment. Uses HTML, CSS and JS.
-Users can use this to create and manage a list of alarms.
+A place where users create and manage a list of alarms. Coding Ninja's Frontend project assignment. Uses HTML, CSS and JS.
+
+> Video Walkthrough below:
+> [![Video Walkthrough](https://img.youtube.com/vi/UFlUNc_c8JI/maxresdefault.jpg)](https://youtu.be/UFlUNc_c8JI)
+
+## Features:
+
+-   Current time display (updated every sec).
+-   Ability to create, update and delete alarms and even disaable alarms.
+    -   Updation or creation of alarm checks for validation (allows only alarm date times in future only).
+    -   Evey alarm displays name, date, and time remaining to finish (if alarm is active).
+
+## Tech Features:
+
+-   HTML:
+    -   Template usage of a common Alarm List item, used in the three alarms sections (active, disabled and finished alarms).
+-   CSS:
+    -   Responsive design using Grid Template Areas.
+    -   Composition over inheritence. Classes are created for a single responsibility and then their composition is achieved in HTML markup by mentioning/composing those multiple classes there. See `grid-view`, `disable`,`hoverable`.
+    -   CSS variables to reuse same CSS code, and but still flexible to offer variety of variable values.
+-   JS:
+    -   Modularized 'Reactish' kind of JS, where code is separated into separate modules. And a common alarmList is used as a context for these different modules to act upon.
+    -   JS OOP priciples used for an AlarmList and Alarm object, whose data and helper functions are also encapsulated within them.
+    -   Easily extendable with more properties per alarm. Like adding colors, description to data model.
+    -   Event handlers are only attached to the list containers, and not attached on every alarm item. This EventDelegation to parent list, increases performance since very less event listeners there.
 
 ## Todo:
 
 -   Choose Time Zone.
--   See the current time.
 -   Create Alarms, with: alarm time, tz inherited from tz chosen above, alarm name, color coding (default too).
--   Alarms list:
-
-    -   Each alarm item shows the alarm time, tz, remaining time, color coded, edit and delete buttons.
-    -   Shows 2d list of alarms which can be edited or deleted.
-        -   Columns represent different collections.
-        -   Rows are different alarms. These alarms are orderable up or down, but be default alarms are getting added as per chronological order or in bottom of the respective list.
-        -   Ability to create more columns, edit column names, and delete columns. Default columns can contain any such emptying column.
-        -   Edit the time.
-        -   Edit the color.
-        -   Edit the time zone.
-        -   Delete the alarm, with confirmation dialog.
-
+-   Create Tags for alarms.
 -   Graph view of alarms.
--   Local Persistence.
 -   Show ads for revenue.
--   Host.
-
-    color alarm,
-    styling,
