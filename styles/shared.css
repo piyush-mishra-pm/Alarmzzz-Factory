@@ -1,10 +1,49 @@
 /* Importing google fonts */
 @import url("https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;700&family=Silkscreen&display=swap");
 
+/* General reset and fixing CSS variables*/
 html {
     --text-font-family: "DynaPuff", cursive;
     --numbers-font-family: "Silkscreen", cursive;
     font-family: var(--text-font-family);
+}
+
+/* Global Resets */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+/* Default List style*/
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Stops animation while window is resized */
+.resize-animation-stopper * {
+    animation: none !important;
+    transition: none !important;
+}
+
+a:-webkit-any-link {
+    text-decoration: none;
+    color: inherit;
 }
 
 body {
@@ -28,10 +67,10 @@ body {
 
     background-color: var(--color-neutral);
 
+    /* mobile first responsive grid layout. On mobile, have single column layout. */
     display: grid;
     gap: 1rem;
     grid-template-columns: 1rem 1fr 1rem;
-    /* mobile view layout */
     grid-template-areas:
         "header     header          header"
         "......     create-alarm    ......."
@@ -41,6 +80,7 @@ body {
         "footer     footer          footer";
 }
 
+/* At bigger screen sizes, we use two column layout*/
 @media (min-width: 950px) {
     body {
         grid-template-columns: 1rem 1fr 1fr 1rem;
@@ -93,44 +133,6 @@ footer {
     height: 2rem;
 }
 
-/* Global Resets */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-figure,
-blockquote,
-dl,
-dd {
-    margin: 0;
-}
-
-/* Default List style*/
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-/* Stops animation while window is resized */
-.resize-animation-stopper * {
-    animation: none !important;
-    transition: none !important;
-}
-
-a:-webkit-any-link {
-    text-decoration: none;
-    color: inherit;
-}
-
 #logo {
     margin: 0;
     color: var(--color-accent);
@@ -138,6 +140,7 @@ a:-webkit-any-link {
     font-size: 2rem;
 }
 
+/*Text related classes*/
 .text-time {
     font-family: var(--numbers-font-family);
 }
@@ -160,6 +163,8 @@ a:-webkit-any-link {
 .lbl-remainingTime {
     font-size: 0.75rem;
 }
+
+/*Flex related utility classes*/
 .flex-vertical {
     display: flex;
     flex-direction: column;
@@ -173,15 +178,16 @@ a:-webkit-any-link {
     flex-wrap: wrap;
 }
 
-.li--alarm {
-    background-color: var(--color-accent-light);
-    margin: 0.5rem;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    overflow-wrap: break-word;
-    color: var(--color-dark);
-    width: 200px;
+/*Grid related utility class*/
+.grid-view {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
+
+/*Utility class to give bg-color, border radius, box shadow to elements. 
+Applied on each alarm, the alarm lists, etc. CSS variables are given value in 
+respective sections, or a default value is used as mentioned below.*/
 .bg-color-radius-shadow {
     background-color: var(--local-bgColor, var(--color-bg-light));
     border-radius: var(--local-bgRadius, 0);
@@ -191,30 +197,37 @@ a:-webkit-any-link {
     padding: var(--local-padding, 5px);
     min-height: 5rem;
 }
-
+/*Utility class for hover effects.*/
 .hoverable:hover {
     cursor: var(--local-hoverCursor, pointer);
     background-color: var(--local-hoverBgColor, var(--color-accent));
 }
+/*Utility class for hiding display of entities (like uuid, error msgs, etc)..*/
 .hidden {
     display: none;
 }
 
+/*Alarm list item's styling.*/
+.li--alarm {
+    background-color: var(--color-accent-light);
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    overflow-wrap: break-word;
+    color: var(--color-dark);
+    width: 200px;
+}
+/*Time section in alarm, uses bg-color-radius-shadow utility class. */
 .time--div {
     --local-bgColor: rgba(37, 85, 53, 0.295);
     --local-boxShadow-blur: 0px;
     --local-boxShadow-radius: 0px;
     --local-bgRadius: 5px;
 }
+/*Remaining time section in alarm, uses bg-color-radius-shadow utility class. */
 .div-remainingTime {
     --local-bgColor: var(--color-dark-lighter);
     --local-boxShadow-blur: 0px;
     --local-boxShadow-radius: 0px;
     --local-bgRadius: 5px;
-}
-
-.grid-view {
-    display: grid;
-    gap: 0.5rem;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }

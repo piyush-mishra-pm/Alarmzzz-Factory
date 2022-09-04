@@ -14,21 +14,21 @@ A place where users create and manage a list of alarms. Coding Ninja's Frontend 
 
 ## Tech Features:
 
--   HTML:
+-   **HTML**:
     -   Template usage of a common Alarm List item, used in the three alarms sections (active, disabled and finished alarms).
--   CSS:
+-   **CSS**:
     -   Responsive design using Grid Template Areas.
     -   Composition over inheritence. Classes are created for a single responsibility and then their composition is achieved in HTML markup by mentioning/composing those multiple classes there. See `grid-view`, `disable`,`hoverable`.
-    -   CSS variables to reuse same CSS code, and but still flexible to offer variety of variable values.
--   JS:
+    -   CSS variables to reuse same CSS code, and but still flexible to offer variety of variable values. See usage of CSS variables of `bg-color-radius-shadow` in `.div-remainingTime` or `.time--div` in `styles/shared.css`.
+-   **JS**:
     -   Modularized 'Reactish' kind of JS, where code is separated into separate modules. And a common alarmList is used as a context for these different modules to act upon.
     -   JS OOP priciples used for an AlarmList and Alarm object, whose data and helper functions are also encapsulated within them.
     -   Easily extendable with more properties per alarm. Like adding colors, description to data model.
-    -   Event handlers are only attached to the list containers, and not attached on every alarm item. This EventDelegation to parent list, increases performance since very less event listeners there.
+    -   Event handlers are only attached to the list containers, and not attached on every alarm item. This EventDelegation to parent list, increases performance since very less event listeners there. See `ul` with `id="ul--alarm-disabled"` which is event listener for edit, delete and disabling alarms, through use of class names `listener-edit` `listener-delete` `listener-disable` in `index.html`.
 
-## Todo:
+## **Todo**:
 
--   Choose Time Zone.
+-   Choose Time Zone: Allow alarms to be created for different timezones.
 -   Create Alarms, with: alarm time, tz inherited from tz chosen above, alarm name, color coding (default too).
 -   Create Tags for alarms.
 -   Graph view of alarms.

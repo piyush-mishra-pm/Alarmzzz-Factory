@@ -1,3 +1,7 @@
+/*
+Styling related to modals (for Edit/Delete alarm).
+*/
+
 #modal-window {
     display: none;
     position: fixed;
