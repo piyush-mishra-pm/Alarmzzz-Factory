@@ -11,6 +11,7 @@ A place where users create and manage a list of alarms. Coding Ninja's Frontend 
 -   Ability to create, update and delete alarms and even disaable alarms.
     -   Updation or creation of alarm checks for validation (allows only alarm date times in future only).
     -   Evey alarm displays name, date, and time remaining to finish (if alarm is active).
+-   Persistence of alarms created, in browser's local storage.
 
 ## Tech Features:
 
